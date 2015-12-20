@@ -1,4 +1,4 @@
-module Control(opcode, RegDest, ALUSrc, MemToReg, RegWrite, MemRead, MemWrite, Branch, ALUOp1, ALUOp0);
+module Control(opcode, RegDest, ALUSrc, MemToReg, RegWrite, MemRead, MemWrite, Branch, ALUOp);
   
   input [5:0] opcode;
   
@@ -9,8 +9,7 @@ module Control(opcode, RegDest, ALUSrc, MemToReg, RegWrite, MemRead, MemWrite, B
   output MemRead;
   output MemWrite;
   output Branch;
-  output ALUOp1;
-  output ALUOp0;
+  output [1:0] ALUOp;
   
   wire outA0;
   wire outA1;
@@ -33,7 +32,7 @@ module Control(opcode, RegDest, ALUSrc, MemToReg, RegWrite, MemRead, MemWrite, B
   assign RegWrite = outO1;
   assign MemWrite = outA2;
   assign Branch   = outA3;
-  assign ALUOp1   = outA0;
-  assign ALUOp0   = outA3;
+  assign ALUOp[1] = outA0;
+  assign ALUOp[0] = outA3;
   
 endmodule
